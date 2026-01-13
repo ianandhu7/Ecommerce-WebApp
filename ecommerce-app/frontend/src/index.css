@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-primary: #000000;
+  --color-secondary: #FFFFFF;
+}
+
+:root {
+  --font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #FFFFFF;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Utilities if needed, but try to use Tailwind classes */
+.btn {
+  @apply inline-block px-10 py-4 font-medium transition-all duration-300 uppercase tracking-widest text-sm;
+}

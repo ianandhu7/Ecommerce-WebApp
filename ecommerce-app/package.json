@@ -1,0 +1,16 @@
+{
+  "name": "ecommerce-app",
+  "version": "1.0.0",
+  "description": "E-commerce application with Node.js backend and React frontend",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm run dev",
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
