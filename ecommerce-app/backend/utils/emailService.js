@@ -1,15 +1,26 @@
 const nodemailer = require('nodemailer');
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+let transporter = null;
+
+if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+} else {
+    console.warn('Email service warning: EMAIL_USER or EMAIL_PASS not set in .env. Emails will not be sent.');
+}
 
 exports.sendOrderConfirmation = async (order, user) => {
     try {
+        if (!transporter) {
+            console.log('Email service skipped: No credentials configured');
+            return;
+        }
+
         if (!user || !user.email) {
             console.log('No user email found for order confirmation');
             return;
