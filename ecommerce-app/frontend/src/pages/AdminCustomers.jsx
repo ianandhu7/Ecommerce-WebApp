@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsersSummary, deleteUser, updateUserStatus } from '../services/adminApi';
-import { FaSearch, FaEye, FaTrash, FaSort } from 'react-icons/fa';
+import { FaSearch, FaEye, FaTrash, FaSort, FaDownload } from 'react-icons/fa';
+import { downloadCSV } from '../utils/csvExport';
 import toast from 'react-hot-toast';
 
 const AdminCustomers = () => {
@@ -157,6 +158,26 @@ const AdminCustomers = () => {
                                 }}
                             />
                         </div>
+
+                        <button
+                            onClick={() => downloadCSV(filteredCustomers, 'customers_list')}
+                            style={{
+                                padding: '0.875rem 1.5rem',
+                                backgroundColor: '#000',
+                                color: 'white',
+                                border: 'none',
+                                fontSize: '0.875rem',
+                                fontWeight: '500',
+                                letterSpacing: '0.05em',
+                                textTransform: 'uppercase',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem'
+                            }}
+                        >
+                            <FaDownload /> Export
+                        </button>
 
                         <Link
                             to="/admin/dashboard"
