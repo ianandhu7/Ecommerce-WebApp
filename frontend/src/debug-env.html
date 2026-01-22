@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Environment Debug</title>
+</head>
+<body>
+    <h1>Environment Variables Debug</h1>
+    <div id="env-info"></div>
+    
+    <script type="module">
+        const envInfo = {
+            VITE_API_URL: import.meta.env.VITE_API_URL,
+            VITE_RAZORPAY_KEY_ID: import.meta.env.VITE_RAZORPAY_KEY_ID,
+            VITE_STRIPE_PUBLISHABLE_KEY: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY,
+            MODE: import.meta.env.MODE,
+            DEV: import.meta.env.DEV,
+            PROD: import.meta.env.PROD
+        };
+        
+        document.getElementById('env-info').innerHTML = '<pre>' + JSON.stringify(envInfo, null, 2) + '</pre>';
+        console.log('Environment Variables:', envInfo);
+    </script>
+</body>
+</html>
