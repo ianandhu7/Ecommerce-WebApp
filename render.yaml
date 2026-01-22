@@ -1,0 +1,37 @@
+services:
+  # Backend Web Service
+  - type: web
+    name: ecommerce-backend
+    runtime: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        sync: false # Set manually in Render dashboard
+      - key: JWT_SECRET
+        sync: false # Set manually in Render dashboard
+      - key: RAZORPAY_KEY_ID
+        sync: false # Set manually in Render dashboard
+      - key: RAZORPAY_KEY_SECRET
+        sync: false # Set manually in Render dashboard
+      - key: FRONTEND_URL
+        sync: false # Set manually in Render dashboard
+
+  # Frontend Static Site
+  - type: web
+    name: ecommerce-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false # Set manually in Render dashboard
+      - key: VITE_RAZORPAY_KEY_ID
+        sync: false # Set manually in Render dashboard
